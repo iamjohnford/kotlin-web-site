@@ -10,8 +10,12 @@
         <img src="icon-7.svg" width="20" alt="Final step" /> <strong>Null safety</strong><br /></p>
 </microformat>
 
-In Kotlin, it's possible to have a `null` value. To help prevent issues with `null` values in your programs, Kotlin has 
-null safety in place. Null safety detects potential problems with `null` values at compile time, rather than at run time.
+In Kotlin, it's possible to have a `null` value. Kotlin uses `null` values when something is missing or not yet set.
+Although it's useful to use `null` values in this way, you might run into problems if your code is not prepared to handle
+them. 
+
+To help prevent issues with `null` values in your programs, Kotlin has null safety in place. Null safety detects
+potential problems with `null` values at compile time, rather than at run time.
 
 Null safety is a combination of features that allow you to:
 * explicitly declare when `null` values are allowed in your program.

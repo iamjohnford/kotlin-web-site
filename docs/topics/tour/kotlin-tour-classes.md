@@ -282,18 +282,55 @@ fun main() {
 
 ### Exercise 2 {initial-collapse-state="collapsed"}
 
-To test your code, you need a generator that can create random employees. Define a class with a fixed list of potential 
-names (inside the class body), and that is configured by a minimum and maximum salary (inside the class header). Once 
-again, the main function demonstrates how you can use this class.
+Declare the additional data classes that are needed for this code to compile.
 
-<deflist collapsible="true" id="kotlin-tour-classes-exercise-2-hint-1">
+|---|---|
+```kotlin
+data class Person(val name: Name, val address: Address, val ownsAPet: Boolean = true)
+// Write your code here
+// data class Name(...)
+
+fun main() {
+    val person = Person(
+        Name("John", "Smith"),
+        Address("123 Fake Street", City("Springfield", "US")),
+        ownsAPet = false
+    )
+}
+```
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-classes-exercise-2"}
+
+|---|---|
+```kotlin
+data class Person(val name: Name, val address: Address, val ownsAPet: Boolean = true)
+data class Name(val first: String, val last: String)
+data class Address(val street: String, val city: City)
+data class City(val name: String, val countryCode: String)
+
+fun main() {
+    val person = Person(
+        Name("John", "Smith"),
+        Address("123 Fake Street", City("Springfield", "US")),
+        ownsAPet = false
+    )
+}
+```
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-classes-solution-2"}
+
+### Exercise 3 {initial-collapse-state="collapsed"}
+
+To test your code, you need a generator that can create random employees. Define a `RandomEmployeeGenerator` class with 
+a fixed list of potential names (inside the class body), and that is configured by a minimum and maximum salary (inside the class header). 
+In the class body, define the `generateEmployee()` function. Once again, the main function demonstrates how you can use this class.
+
+<deflist collapsible="true" id="kotlin-tour-classes-exercise-3-hint-1">
     <def title="Hint">
         Lists have an extension function called <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/random.html"><code>.random()</code></a>
         that returns a random item within a list.
     </def>
 </deflist>
 
-<deflist collapsible="true" id="kotlin-tour-classes-exercise-2-hint-2">
+<deflist collapsible="true" id="kotlin-tour-classes-exercise-3-hint-2">
     <def title="Hint">
         <code>Random.nextInt(from = ..., until = ...)</code> gives you a random <code>Int</code> number within specified limits.
     </def>
@@ -317,7 +354,7 @@ fun main() {
     println(empGen.generateEmployee())
 }
 ```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-classes-exercise-2"}
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-classes-exercise-3"}
 
 |---|---|
 ```kotlin
@@ -342,7 +379,7 @@ fun main() {
     println(empGen.generateEmployee())
 }
 ```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-classes-solution-2"}
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-classes-solution-3"}
 
 ## Next step
 

@@ -148,8 +148,8 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function-before"}
 
-You can remove the curly braces `{}` and declare the function body using the assignment operator `=`. And due to Kotlin's
-type inference, you can also omit the return type. The `sum()` function then becomes one line:
+You can remove the curly braces `{}` and declare the function body using the assignment operator `=`. When you use the 
+assignment operator `=`, Kotlin uses type inference, so you can also omit the return type. The `sum()` function then becomes one line:
 
 ```kotlin
 fun sum(x: Int, y: Int) = x + y
@@ -161,10 +161,48 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function-after"}
 
-> Omitting the return type is only possible when your function has no body (`{}`). Unless your function's return type
-> is `Unit`.
+> If you use `{}` curly braces to declare your function body, you must declare the return type unless it is `Unit`.
 > 
 {type="note"}
+
+## Early returns in functions
+
+To stop the code in your function from being processed further than a certain point, use the `return` keyword. This example
+uses `if` to return from a function early if the conditional expression is found to be true:
+
+```kotlin
+// A list of registered usernames
+val registeredUsernames = mutableListOf("john_doe", "jane_smith")
+
+// A list of registered emails
+val registeredEmails = mutableListOf("john@example.com", "jane@example.com")
+
+fun registerUser(username: String, email: String): String {
+    // Early return if the username is already taken
+    if (username in registeredUsernames) {
+        return "Username already taken. Please choose a different username."
+    }
+
+    // Early return if the email is already registered
+    if (email in registeredEmails) {
+        return "Email already registered. Please use a different email."
+    }
+
+    // Proceed with the registration if the username and email are not taken
+    registeredUsernames.add(username)
+    registeredEmails.add(email)
+
+    return "User registered successfully: $username"
+}
+
+fun main() {
+    println(registerUser("john_doe", "newjohn@example.com"))
+    // Output: Username already taken. Please choose a different username.
+    println(registerUser("new_user", "newuser@example.com"))
+    // Output: User registered successfully: new_user
+}
+```
+{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-function-early-return"}
 
 ## Functions practice
 
@@ -290,11 +328,12 @@ Can also be written as a lambda expression:
 
 ```kotlin
 fun main() {
-    println({ text: String -> text.uppercase() }("hello"))
+    val upperCaseString = { text: String -> text.uppercase() }
+    println(upperCaseString("hello"))
     // HELLO
 }
 ```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-function-after"}
+{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-variable"}
 
 Lambda expressions can be hard to understand at first glance so let's break it down. Lambda expressions are written 
 within curly braces `{}`.
@@ -308,6 +347,9 @@ In the previous example:
 * `text` has type `String`.
 * the function returns the result of the [`.uppercase()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/uppercase.html)
 function called on `text`.
+* the entire lambda expression is assigned to the `upperCaseString` variable with the assignment operator `=`.
+* the lambda expression is called by using the variable `upperCaseString` like a function and the string `"hello"` as a parameter.
+* the `println()` function prints the result.
 
 > If you declare a lambda without parameters, then there is no need to use `->`. For example:
 > ```kotlin
@@ -317,23 +359,9 @@ function called on `text`.
 {type="note"}
 
 Lambda expressions can be used in a number of ways. You can:
-* [assign a lambda to a variable that you can then invoke later](#assign-to-variable)
 * [pass a lambda expression as a parameter to another function](#pass-to-another-function)
 * [return a lambda expression from a function](#return-from-a-function)
 * [invoke a lambda expression on its own](#invoke-separately)
-
-### Assign to variable
-
-To assign a lambda expression to a variable, use the assignment operator `=`:
-
-```kotlin
-fun main() {
-    val upperCaseString = { text: String -> text.uppercase() }
-    println(upperCaseString("hello"))
-    // HELLO
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-variable"}
 
 ### Pass to another function
 

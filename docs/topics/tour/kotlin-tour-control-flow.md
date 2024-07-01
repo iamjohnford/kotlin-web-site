@@ -18,7 +18,10 @@ through loops.
 
 Kotlin provides `if` and `when` for checking conditional expressions. 
 
-> If you have to choose between `if` and `when`, we recommend using `when` as it leads to more robust and safer programs.
+> If you have to choose between `if` and `when`, we recommend using `when` because it:
+> * makes your code easier to read.
+> * makes it easier to add another branch.
+> * leads to more robust and safer programs.
 > 
 {type="note"}
 
@@ -66,6 +69,8 @@ fun main() {
 Use `when` when you have a conditional expression with multiple branches.
 `when` can be used either as a statement or as an expression.
 
+A **statement** doesn't return anything but performs actions instead.
+
 Here is an example of using `when` as a statement:
 * Place the conditional expression within parentheses `()` and the actions to take
 within curly braces `{}`. 
@@ -95,7 +100,10 @@ fun main() {
 >
 {type="note"}
 
-Here is an example of using `when` as an expression. The `when` syntax is assigned immediately to a variable:
+An **expression** returns a value that can be used later on in your code.
+
+Here is an example of using `when` as an expression. The `when` expression is assigned immediately to a variable which is
+later used with the `println()` function:
 
 ```kotlin
 fun main() {
@@ -117,33 +125,49 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression"}
 
-If `when` is used as an expression, the else branch is mandatory, unless the compiler can detect that all possible cases 
-are covered by the branch conditions.
+The examples of `when` that you've seen so far both had a subject: `obj`. But `when` can also be used without a subject.
 
-The previous example showed that `when` is useful for matching a variable. `when` is also useful when you need to check
-a chain of Boolean expressions:
+This example uses a `when` expression **without** a subject to check a chain of Boolean expressions:
 
 ```kotlin
 fun main() {
-//sampleStart
-    val temp = 18
+    val trafficLightState = "Red" // This can be "Green", "Yellow", or "Red"
 
-    val description = when {
-        // If temp < 0 is true, sets description to "very cold"
-        temp < 0 -> "very cold"
-        // If temp < 10 is true, sets description to "a bit cold"
-        temp < 10 -> "a bit cold"
-        // If temp < 20 is true, sets description to "warm"
-        temp < 20 -> "warm"
-        // Sets description to "hot" if no previous condition is satisfied
-        else -> "hot"             
+    val trafficAction = when {
+        trafficLightState == "Green" -> "Go"
+        trafficLightState == "Yellow" -> "Slow down"
+        trafficLightState == "Red" -> "Stop"
+        else -> "Malfunction"
     }
-    println(description)
-    // warm
-//sampleEnd
+
+    println(trafficAction)
+    // Stop
 }
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression-boolean"}
+
+However, you can have the same code but with `trafficLightState` as the subject:
+
+```kotlin
+fun main() {
+    val trafficLightState = "Red" // This can be "Green", "Yellow", or "Red"
+
+    val trafficAction = when (trafficLightState) {
+        "Green" -> "Go"
+        "Yellow" -> "Slow down"
+        "Red" -> "Stop"
+        else -> "Malfunction"
+    }
+
+    println(trafficAction)  
+    // Stop
+}
+```
+{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression-boolean-subject"}
+
+Using `when` with a subject makes your code easier to read and maintain. When you use a subject with a `when` expression, 
+it also helps the compiler check that all possible cases are covered. Otherwise, if you don't use a subject with a 
+`when` expression, you need to provide an else branch.
 
 ## Ranges
 
@@ -388,6 +412,14 @@ divisible by five with the word "buzz". Any number divisible by both 3 and 5 mus
     </def>
 </deflist>
 
+<deflist collapsible="true">
+    <def title="Hint">
+        Use the modulo operator (<code>%</code>) to return the remainder of a number being divided. Use the <a href="operator-overloading.md#equality-and-inequality-operators">equality operator</a> 
+        (<code>==</code>) to check if the remainder equals zero.
+        step. 
+    </def>
+</deflist>
+
 |---|---|
 ```kotlin
 fun main() {
@@ -444,6 +476,40 @@ fun main() {
 }
 ```
 {initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-4"}
+
+### Exercise 5 {initial-collapse-state="collapsed"}
+
+Create a simple game where you win if throwing two dice results in the same number. Use `if` to print `You win :)`
+if the dice match or `You lose :(` otherwise.
+
+<deflist collapsible="true">
+    <def title="Hint">
+        Use the <a href="operator-overloading.md#equality-and-inequality-operators"> equality operator </a>  (<code>==</code>) to compare the dice results. 
+    </def>
+</deflist>
+
+|---|---|
+```kotlin
+fun main() {
+    val firstResult = Random.nextInt(6)
+    val secondResult = Random.nextInt(6)
+    // Write your code here
+}
+```
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-5"}
+
+|---|---|
+```kotlin
+fun main() {
+    val firstResult = Random.nextInt(6)
+    val secondResult = Random.nextInt(6)
+    if (firstResult == secondResult)
+        println("You win :)")
+    else
+        println("You lose :(")
+}
+```
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-5"}
 
 ## Next step
 

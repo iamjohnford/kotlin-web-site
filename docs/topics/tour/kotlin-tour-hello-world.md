@@ -26,7 +26,9 @@ In Kotlin:
 * the body of a function is written within curly braces `{}`
 * [`println()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/println.html) and [`print()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/print.html) functions print their arguments to standard output
 
-> Functions are discussed in more detail in a couple of chapters. Until then, all examples use the `main()` function.
+> A function is a set of instructions that performs a specific task. Once you create a function, you can use it whenever
+> you need to perform that task, without having to write the instructions all over again. Functions are discussed in more
+> detail in a couple of chapters. Until then, all examples use the `main()` function.
 > 
 {type="note"}
 
@@ -35,6 +37,10 @@ In Kotlin:
 All programs need to be able to store data, and variables help you to do just that. In Kotlin, you can declare:
 * read-only variables with `val`
 * mutable variables with `var`
+
+> You can't change a read-only variable once you have given it a value.
+> 
+{type ="note"}
 
 To assign a value, use the assignment operator `=`.
 
