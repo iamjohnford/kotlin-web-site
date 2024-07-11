@@ -11,8 +11,9 @@
 </microformat>
 
 In Kotlin, it's possible to have a `null` value. Kotlin uses `null` values when something is missing or not yet set.
-Although it's useful to use `null` values in this way, you might run into problems if your code is not prepared to handle
-them. 
+You've already seen an example of Kotlin returning a `null` value in the [Collections](kotlin-tour-collections.md#kotlin-tour-map-no-key)
+chapter when you tried to access a key-value pair with a key that doesn't exist in the map. Although it's useful to use
+`null` values in this way, you might run into problems if your code isn't prepared to handle them. 
 
 To help prevent issues with `null` values in your programs, Kotlin has null safety in place. Null safety detects
 potential problems with `null` values at compile time, rather than at run time.

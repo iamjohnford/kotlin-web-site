@@ -21,7 +21,7 @@ Kotlin provides `if` and `when` for checking conditional expressions.
 > If you have to choose between `if` and `when`, we recommend using `when` because it:
 > * makes your code easier to read.
 > * makes it easier to add another branch.
-> * leads to more robust and safer programs.
+> * leads to fewer mistakes in your code.
 > 
 {type="note"}
 
@@ -67,14 +67,17 @@ fun main() {
 ### When
 
 Use `when` when you have a conditional expression with multiple branches.
+
+To use `when`:
+* Place the conditional expression within parentheses `()` and the actions to take
+  within curly braces `{}`.
+* Use `->` in each branch to separate each condition from each action.
+
 `when` can be used either as a statement or as an expression.
 
 A **statement** doesn't return anything but performs actions instead.
 
 Here is an example of using `when` as a statement:
-* Place the conditional expression within parentheses `()` and the actions to take
-within curly braces `{}`. 
-* Use `->` in each branch to separate each condition from each action.
 
 ```kotlin
 fun main() {

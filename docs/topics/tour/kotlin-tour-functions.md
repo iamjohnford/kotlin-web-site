@@ -161,6 +161,9 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function-after"}
 
+However, if you want your code to be quickly understood by other developers, it's a good idea to explicitly define the 
+return type even when using the assignment operator `=`.
+
 > If you use `{}` curly braces to declare your function body, you must declare the return type unless it is `Unit`.
 > 
 {type="note"}
