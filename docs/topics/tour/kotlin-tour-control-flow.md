@@ -189,6 +189,85 @@ You can also do the same with `Char` ranges:
 * `'a'..'d'` is equivalent to `'a', 'b', 'c', 'd'`
 * `'z' downTo 's' step 2` is equivalent to `'z', 'x', 'v', 't'`
 
+## Conditional expressions and ranges practice
+
+### Exercise 1 {initial-collapse-state="collapsed" id="conditional-expressions-exercise-1"}
+
+Create a simple game where you win if throwing two dice results in the same number. Use `if` to print `You win :)`
+if the dice match or `You lose :(` otherwise.
+
+<deflist collapsible="true">
+    <def title="Hint">
+        Use the <a href="operator-overloading.md#equality-and-inequality-operators"> equality operator </a>  (<code>==</code>) to compare the dice results. 
+    </def>
+</deflist>
+
+|---|---|
+```kotlin
+fun main() {
+    val firstResult = Random.nextInt(6)
+    val secondResult = Random.nextInt(6)
+    // Write your code here
+}
+```
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-conditional-exercise-1"}
+
+|---|---|
+```kotlin
+fun main() {
+    val firstResult = Random.nextInt(6)
+    val secondResult = Random.nextInt(6)
+    if (firstResult == secondResult)
+        println("You win :)")
+    else
+        println("You lose :(")
+}
+```
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-conditional-solution-1"}
+
+### Exercise 2 {initial-collapse-state="collapsed" id="conditional-expressions-exercise-2"}
+
+Using a `when` expression, update the following program so that when you input the names of GameBoy buttons, the actions
+are printed to output.
+
+| **Button** | **Action**             |
+|------------|------------------------|
+| A          | Yes                    |
+| B          | No                     |
+| X          | Menu                   |
+| Y          | Nothing                |
+| Other      | There is no such button |
+
+|---|---|
+```kotlin
+fun main() {
+    val button = "A"
+
+    println(
+        // Write your code here
+    )
+}
+```
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-conditional-exercise-2"}
+
+|---|---|
+```kotlin
+fun main() {
+    val button = "A"
+    
+    println(
+        when (button) {
+            "A" -> "Yes"
+            "B" -> "No"
+            "X" -> "Menu"
+            "Y" -> "Nothing"
+            else -> "There is no such button"
+        }
+    )
+}
+```
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-conditional-solution-2"}
+
 ## Loops
 
 The two most common loop structures in programming are `for` and `while`. Use `for` to iterate over a range of 
@@ -296,52 +375,9 @@ For more information and examples of conditional expressions and loops, see [Con
 
 Now that you know the fundamentals of Kotlin control flow, it's time to learn how to write your own [functions](kotlin-tour-functions.md).
 
-## Practice
+## Loops practice
 
-### Exercise 1 {initial-collapse-state="collapsed"}
-
-Using a `when` expression, update the following program so that when you input the names of GameBoy buttons, the actions
-are printed to output. 
-
-| **Button** | **Action**             |
-|------------|------------------------|
-| A          | Yes                    |
-| B          | No                     |
-| X          | Menu                   |
-| Y          | Nothing                |
-| Other      | There is no such button |
-
-|---|---|
-```kotlin
-fun main() {
-    val button = "A"
-
-    println(
-        // Write your code here
-    )
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-1"}
-
-|---|---|
-```kotlin
-fun main() {
-    val button = "A"
-    
-    println(
-        when (button) {
-            "A" -> "Yes"
-            "B" -> "No"
-            "X" -> "Menu"
-            "Y" -> "Nothing"
-            else -> "There is no such button"
-        }
-    )
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-1"}
-
-### Exercise 2 {initial-collapse-state="collapsed"}
+### Exercise 1 {initial-collapse-state="collapsed" id="loops-exercise-1"}
 
 You have a program that counts pizza slices until there’s a whole pizza with 8 slices. Refactor this program in two ways:
 * Use a `while` loop.
@@ -371,7 +407,7 @@ fun main() {
     println("There are $pizzaSlices slices of pizza. Hooray! We have a whole pizza! :D")
 }
 ```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-2"}
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-loops-exercise-1"}
 
 |---|---|
 ```kotlin
@@ -385,7 +421,7 @@ fun main() {
     println("There are $pizzaSlices slices of pizza. Hooray! We have a whole pizza! :D")
 }
 ```
-{initial-collapse-state="collapsed" collapsed-title="Example solution 1" id="kotlin-tour-control-flow-exercise-2-solution-1"}
+{initial-collapse-state="collapsed" collapsed-title="Example solution 1" id="kotlin-tour-control-flow-loops-exercise-1-solution-1"}
 
 |---|---|
 ```kotlin
@@ -400,9 +436,9 @@ fun main() {
 }
 
 ```
-{initial-collapse-state="collapsed" collapsed-title="Example solution 2" id="kotlin-tour-control-flow-exercise-2-solution-2"}
+{initial-collapse-state="collapsed" collapsed-title="Example solution 2" id="kotlin-tour-control-flow-loops-exercise-1-solution-2"}
 
-### Exercise 3 {initial-collapse-state="collapsed"}
+### Exercise 2 {initial-collapse-state="collapsed" id="loops-exercise-2"}
 
 Write a program that simulates the [Fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz) game. Your task is to print 
 numbers from 1 to 100 incrementally, replacing any number divisible by three with the word "fizz", and any number 
@@ -419,7 +455,6 @@ divisible by five with the word "buzz". Any number divisible by both 3 and 5 mus
     <def title="Hint">
         Use the modulo operator (<code>%</code>) to return the remainder of a number being divided. Use the <a href="operator-overloading.md#equality-and-inequality-operators">equality operator</a> 
         (<code>==</code>) to check if the remainder equals zero.
-        step. 
     </def>
 </deflist>
 
@@ -429,7 +464,7 @@ fun main() {
     // Write your code here
 }
 ```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-3"}
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-loops-exercise-2"}
 
 |---|---|
 ```kotlin
@@ -446,9 +481,9 @@ fun main() {
     }
 }
 ```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-3"}
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-loops-solution-2"}
 
-### Exercise 4 {initial-collapse-state="collapsed"}
+### Exercise 3 {initial-collapse-state="collapsed" id="loops-exercise-3"}
 
 You have a list of words. Use `for` and `if` to print only the words that start with the letter `l`.
 
@@ -466,7 +501,7 @@ fun main() {
     // Write your code here
 }
 ```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-4"}
+{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-loops-exercise-3"}
 
 |---|---|
 ```kotlin
@@ -478,41 +513,9 @@ fun main() {
     }
 }
 ```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-4"}
+{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-loops-solution-3"}
 
-### Exercise 5 {initial-collapse-state="collapsed"}
 
-Create a simple game where you win if throwing two dice results in the same number. Use `if` to print `You win :)`
-if the dice match or `You lose :(` otherwise.
-
-<deflist collapsible="true">
-    <def title="Hint">
-        Use the <a href="operator-overloading.md#equality-and-inequality-operators"> equality operator </a>  (<code>==</code>) to compare the dice results. 
-    </def>
-</deflist>
-
-|---|---|
-```kotlin
-fun main() {
-    val firstResult = Random.nextInt(6)
-    val secondResult = Random.nextInt(6)
-    // Write your code here
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-exercise-5"}
-
-|---|---|
-```kotlin
-fun main() {
-    val firstResult = Random.nextInt(6)
-    val secondResult = Random.nextInt(6)
-    if (firstResult == secondResult)
-        println("You win :)")
-    else
-        println("You lose :(")
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-solution-5"}
 
 ## Next step
 
